@@ -32,6 +32,7 @@ import {
 	selector: 'hub-skeleton',
 	standalone: true,
 	imports: [NgStyle, NgTemplateOutlet],
+	providers: [HubSkeletonPresetRegistryService],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div
