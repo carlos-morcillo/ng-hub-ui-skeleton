@@ -1,4 +1,4 @@
-import { DOCUMENT, NgStyle, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
 	Component,
@@ -31,7 +31,7 @@ import {
 @Component({
 	selector: 'hub-skeleton',
 	standalone: true,
-	imports: [NgStyle, NgTemplateOutlet],
+	imports: [NgTemplateOutlet],
 	providers: [HubSkeletonPresetRegistryService],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
@@ -58,7 +58,7 @@ import {
 					[class.hub-skeleton__node--grid]="node.type === 'grid'"
 					[class.hub-skeleton__node--row]="node.type === 'stack' && node.props['direction'] === 'row'"
 					[class.hub-skeleton__node--grow]="node.props['grow'] === 'true'"
-					[ngStyle]="buildStyles(node)"
+					[style]="buildStyles(node)"
 					aria-hidden="true"
 				>
 					@if (node.children.length > 0) {
