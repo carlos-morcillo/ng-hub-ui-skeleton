@@ -1,9 +1,9 @@
 {
   "name": "ng-hub-ui-skeleton",
-  "version": "0.1.0",
+  "version": "22.0.0",
   "license": "MIT",
   "description": "Dynamic Angular skeleton placeholders with presets, inline DSL templates, responsive variants, and programmatic preset registration.",
-  "author": "Carlos Morcillo Fernández <carlos.morcillo@me.com>",
+  "author": "Carlos Morcillo <carlos.morcillo@me.com> (https://www.carlosmorcillo.com)",
   "repository": {
     "type": "git",
     "url": "https://github.com/carlos-morcillo/ng-hub-ui-skeleton.git"
@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/carlos-morcillo/ng-hub-ui-skeleton/issues"
   },
-  "homepage": "https://github.com/carlos-morcillo/ng-hub-ui-skeleton#readme",
+  "homepage": "https://hubui.dev/",
   "keywords": [
     "angular",
     "skeleton",
