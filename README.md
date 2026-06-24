@@ -356,6 +356,25 @@ hub-skeleton {
 
 The `appearance` input swaps the base/highlight colors for `subtle` and `contrast` tones. Per-node modifiers (`width`, `height`, `size`, `radius`, `gap`, `columns`, `align`, `justify`) are applied as scoped `--hub-skeleton-node-*` custom properties.
 
+### The `hub-skeleton-theme()` Sass mixin
+
+For Sass-based projects, the `hub-skeleton-theme()` mixin overrides the `--hub-skeleton-*` tokens in a single include. Every parameter is optional and defaults to `null`, so only the ones you pass are emitted — the rest keep the component defaults. It is token-based and self-contained (no Bootstrap dependency). A skeleton is a neutral placeholder, so there is no semantic color variant: tune the base / highlight surfaces, the corner radius, the gap between nodes and the shimmer speed instead (per-node sizes still come from the template DSL / presets).
+
+```scss
+@use 'ng-hub-ui-skeleton/styles/mixins/skeleton-theme' as *;
+
+hub-skeleton.on-dark {
+	@include hub-skeleton-theme(
+		$bg: rgba(255, 255, 255, 0.1),
+		$highlight: rgba(255, 255, 255, 0.22),
+		$radius: 8px,
+		$animation-duration: 1.8s
+	);
+}
+```
+
+Available parameters: `$bg`, `$highlight`, `$radius`, `$gap`, `$animation-duration`.
+
 ## 📊 Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md) for the full version history.

@@ -1,5 +1,11 @@
 # Changelog
 
+## [22.1.0] - 2026-06-24
+
+### Added
+
+- New **`hub-skeleton-theme()` Sass mixin** (`styles/mixins/skeleton-theme`) — theme the loading placeholders in one call: base / highlight surfaces (the shimmer gradient), corner radius, node gap and shimmer speed. Every parameter is optional and defaults to `null`, so only the ones you pass are emitted as `--hub-skeleton-*` overrides. Token-based, no Bootstrap dependency. (A skeleton is a neutral placeholder — there is no semantic colour variant; per-node sizes still come from the template DSL / presets.) The five theming tokens (`--hub-skeleton-bg` / `-highlight` / `-radius` / `-gap` / `-animation-duration`) are now documented in the design-token reference.
+
 ## [22.0.0] - 2026-06-17
 
 ### Changed

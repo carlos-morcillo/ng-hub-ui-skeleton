@@ -1,0 +1,52 @@
+// ─────────────────────────────────────────────────────────────────────────
+// hub-skeleton-theme — one-call theming for `<hub-skeleton>`
+// ─────────────────────────────────────────────────────────────────────────
+//
+// Override the `--hub-skeleton-*` design tokens in a single include. Every
+// parameter is OPTIONAL and defaults to `null`: only the parameters you pass
+// are emitted, so the rest keep the component's defaults. Token-based and
+// self-contained (no Bootstrap dependencies).
+//
+// A skeleton is a neutral loading placeholder — there is no semantic colour
+// variant; tune the base / highlight surfaces, the corner radius, the gap
+// between nodes and the shimmer speed instead. (Per-node sizes come from the
+// template DSL / presets, not from this mixin.)
+//
+// @example
+//
+//   @use 'ng-hub-ui-skeleton/styles/mixins/skeleton-theme' as *;
+//
+//   hub-skeleton.on-dark {
+//     @include hub-skeleton-theme(
+//       $bg: rgba(255, 255, 255, 0.10),
+//       $highlight: rgba(255, 255, 255, 0.22),
+//       $radius: 8px,
+//       $animation-duration: 1.8s
+//     );
+//   }
+//
+// scss-docs-start hub-skeleton-theme
+@mixin hub-skeleton-theme(
+	$bg: null,
+	$highlight: null,
+	$radius: null,
+	$gap: null,
+	$animation-duration: null
+) {
+	@if $bg != null {
+		--hub-skeleton-bg: #{$bg};
+	}
+	@if $highlight != null {
+		--hub-skeleton-highlight: #{$highlight};
+	}
+	@if $radius != null {
+		--hub-skeleton-radius: #{$radius};
+	}
+	@if $gap != null {
+		--hub-skeleton-gap: #{$gap};
+	}
+	@if $animation-duration != null {
+		--hub-skeleton-animation-duration: #{$animation-duration};
+	}
+}
+// scss-docs-end hub-skeleton-theme
