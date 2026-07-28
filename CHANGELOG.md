@@ -1,5 +1,11 @@
 # Changelog
 
+## [22.2.1] - 2026-07-28
+
+### Added
+
+- Comprehensive test suite for the skeleton DSL parser and preset registry: full grammar coverage (node types, nesting, siblings, props, variants, multipliers, responsive tokens), every parser error path with its exact message, preset expansion/override/variant resolution, and component render round-trips. No runtime changes.
+
 ## [22.2.0] - 2026-07-07
 
 ### Changed
