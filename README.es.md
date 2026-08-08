@@ -9,11 +9,11 @@ Placeholders de carga (skeletons) dinámicos para Angular, definidos con un DSL 
 
 ## Documentación y ejemplos en vivo
 
-Este paquete forma parte de [Hub UI](https://hubui.dev/), una colección de librerías de componentes Angular para aplicaciones standalone.
+Este paquete forma parte de [Hub UI](https://hubui.dev/en/), una colección de librerías de componentes Angular para aplicaciones standalone.
 
-- Documentación: https://hubui.dev/skeleton/overview/
-- Ejemplos en vivo: https://hubui.dev/skeleton/examples/
-- Hub UI: https://hubui.dev/
+- Documentación: https://hubui.dev/en/skeleton/overview/
+- Ejemplos en vivo: https://hubui.dev/en/skeleton/examples/
+- Hub UI: https://hubui.dev/en/
 
 ## 🧩 Familia de librerías `ng-hub-ui`
 

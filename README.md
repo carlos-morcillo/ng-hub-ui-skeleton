@@ -9,11 +9,11 @@ Dynamic Angular skeleton placeholders driven by a compact Emmet-like DSL, reusab
 
 ## Documentation and Live Examples
 
-This package is part of [Hub UI](https://hubui.dev/), a collection of Angular component libraries for standalone apps.
+This package is part of [Hub UI](https://hubui.dev/en/), a collection of Angular component libraries for standalone apps.
 
-- Docs: https://hubui.dev/skeleton/overview/
-- Live examples: https://hubui.dev/skeleton/examples/
-- Hub UI: https://hubui.dev/
+- Docs: https://hubui.dev/en/skeleton/overview/
+- Live examples: https://hubui.dev/en/skeleton/examples/
+- Hub UI: https://hubui.dev/en/
 
 ## 🧩 Library Family `ng-hub-ui`
 
