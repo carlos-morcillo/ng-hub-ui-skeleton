@@ -1,5 +1,11 @@
 # Changelog
 
+## [22.2.3] - 2026-08-17
+
+### Fixed
+
+- **The package shipped without its licence notice.** `package.json` declared MIT, but no `LICENSE` file travelled in the tarball — and MIT itself requires the copyright notice to be included in distributions. The notice ships now.
+
 ## [22.2.2] - 2026-08-08
 
 ### Fixed
