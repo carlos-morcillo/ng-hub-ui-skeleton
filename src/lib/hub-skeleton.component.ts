@@ -196,10 +196,7 @@ export class HubSkeletonComponent implements OnInit, OnDestroy {
 	/** Resolved render nodes after preset expansion and breakpoint evaluation. */
 	readonly resolvedNodes = computed<readonly HubSkeletonRenderNode[]>(() => {
 		const { template, params, variant } = this.resolveRuntimeTemplate();
-		const dsl = interpolateHubSkeletonParams(
-			resolveTemplateDsl(template, this.activeBreakpoint()),
-			params
-		);
+		const dsl = interpolateHubSkeletonParams(resolveTemplateDsl(template, this.activeBreakpoint()), params);
 		const ast = parseHubSkeletonDsl(dsl);
 
 		return resolveHubSkeletonNodes(ast, {

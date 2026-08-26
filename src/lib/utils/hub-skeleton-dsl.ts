@@ -234,10 +234,7 @@ export function interpolateHubSkeletonParams(source: string, params: HubSkeleton
  * @param breakpoint Current active breakpoint.
  * @returns DSL string to parse.
  */
-export function resolveTemplateDsl(
-	template: HubSkeletonTemplateInput,
-	breakpoint: HubSkeletonBreakpoint
-): string {
+export function resolveTemplateDsl(template: HubSkeletonTemplateInput, breakpoint: HubSkeletonBreakpoint): string {
 	if (typeof template === 'string') {
 		return template;
 	}
@@ -356,10 +353,7 @@ export function resolveHubSkeletonNodes(
 			...runtimeParams
 		};
 		const presetTemplate = variantDef?.template ?? preset.template;
-		const presetDsl = interpolateHubSkeletonParams(
-			resolveTemplateDsl(presetTemplate, options.breakpoint),
-			presetParams
-		);
+		const presetDsl = interpolateHubSkeletonParams(resolveTemplateDsl(presetTemplate, options.breakpoint), presetParams);
 		const presetAst = parseHubSkeletonDsl(presetDsl);
 		const resolvedPresetNodes = resolveNodes(presetAst, presetParams, activeVariant);
 
@@ -375,13 +369,8 @@ export function resolveHubSkeletonNodes(
 	return resolveNodes(nodes, options.params, options.fallbackVariant);
 }
 
-function resolveProps(
-	props: Readonly<Record<string, string>>,
-	breakpoint: HubSkeletonBreakpoint
-): Record<string, string> {
-	return Object.fromEntries(
-		Object.entries(props).map(([key, value]) => [key, resolveResponsiveToken(value, breakpoint)])
-	);
+function resolveProps(props: Readonly<Record<string, string>>, breakpoint: HubSkeletonBreakpoint): Record<string, string> {
+	return Object.fromEntries(Object.entries(props).map(([key, value]) => [key, resolveResponsiveToken(value, breakpoint)]));
 }
 
 function convertNodePropsToParams(

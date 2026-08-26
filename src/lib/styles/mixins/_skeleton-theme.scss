@@ -26,13 +26,7 @@
 //   }
 //
 // scss-docs-start hub-skeleton-theme
-@mixin hub-skeleton-theme(
-	$bg: null,
-	$highlight: null,
-	$radius: null,
-	$gap: null,
-	$animation-duration: null
-) {
+@mixin hub-skeleton-theme($bg: null, $highlight: null, $radius: null, $gap: null, $animation-duration: null) {
 	@if $bg != null {
 		--hub-skeleton-bg: #{$bg};
 	}

@@ -1,38 +1,38 @@
 {
-  "name": "ng-hub-ui-skeleton",
-  "version": "22.2.3",
-  "license": "MIT",
-  "description": "Dynamic Angular skeleton placeholders with presets, inline DSL templates, responsive variants, and programmatic preset registration.",
-  "author": "Carlos Morcillo <carlos.morcillo@me.com> (https://www.carlosmorcillo.com)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/carlos-morcillo/ng-hub-ui-skeleton.git"
-  },
-  "bugs": {
-    "url": "https://github.com/carlos-morcillo/ng-hub-ui-skeleton/issues"
-  },
-  "homepage": "https://hubui.dev/",
-  "keywords": [
-    "angular",
-    "skeleton",
-    "placeholder",
-    "loading",
-    "shimmer",
-    "ui-component",
-    "angular-library",
-    "ng-hub-ui",
-    "typescript",
-    "angular21"
-  ],
-  "peerDependencies": {
-    "@angular/common": ">=21.0.0",
-    "@angular/core": ">=21.0.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "sideEffects": false
+	"name": "ng-hub-ui-skeleton",
+	"version": "22.2.3",
+	"license": "MIT",
+	"description": "Dynamic Angular skeleton placeholders with presets, inline DSL templates, responsive variants, and programmatic preset registration.",
+	"author": "Carlos Morcillo <carlos.morcillo@me.com> (https://www.carlosmorcillo.com)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/carlos-morcillo/ng-hub-ui-skeleton.git"
+	},
+	"bugs": {
+		"url": "https://github.com/carlos-morcillo/ng-hub-ui-skeleton/issues"
+	},
+	"homepage": "https://hubui.dev/",
+	"keywords": [
+		"angular",
+		"skeleton",
+		"placeholder",
+		"loading",
+		"shimmer",
+		"ui-component",
+		"angular-library",
+		"ng-hub-ui",
+		"typescript",
+		"angular21"
+	],
+	"peerDependencies": {
+		"@angular/common": ">=21.0.0",
+		"@angular/core": ">=21.0.0"
+	},
+	"dependencies": {
+		"tslib": "^2.3.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"sideEffects": false
 }

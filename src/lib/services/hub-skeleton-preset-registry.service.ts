@@ -3,12 +3,9 @@ import { HUB_SKELETON_DEFAULT_PRESETS } from '../presets/hub-skeleton-default-pr
 import { HubSkeletonPreset } from '../models/hub-skeleton.types';
 
 /** Multi-provider token for consumer-defined skeleton preset groups. */
-export const HUB_SKELETON_PRESETS = new InjectionToken<readonly (readonly HubSkeletonPreset[])[]>(
-	'HUB_SKELETON_PRESETS',
-	{
+export const HUB_SKELETON_PRESETS = new InjectionToken<readonly (readonly HubSkeletonPreset[])[]>('HUB_SKELETON_PRESETS', {
 	factory: () => []
-	}
-);
+});
 
 /**
  * Registers one or more custom presets for the active injector tree.

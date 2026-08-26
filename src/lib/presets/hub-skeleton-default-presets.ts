@@ -139,8 +139,7 @@ export const HUB_SKELETON_DEFAULT_PRESETS: readonly HubSkeletonPreset[] = [
 	{
 		name: 'filter-bar',
 		description: 'Row of filter controls with mobile stacking.',
-		template:
-			'grid(columns:1|md=4,gap:12)>block(height:40,radius:12)*{{filters}}',
+		template: 'grid(columns:1|md=4,gap:12)>block(height:40,radius:12)*{{filters}}',
 		defaults: {
 			filters: 4
 		}

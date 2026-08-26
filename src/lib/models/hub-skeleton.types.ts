@@ -12,8 +12,7 @@ export type HubSkeletonPrimitive = string | number | boolean;
  * Breakpoint-aware primitive values.
  */
 export type HubSkeletonResponsiveValue<T extends HubSkeletonPrimitive = HubSkeletonPrimitive> =
-	| T
-	| Partial<Record<HubSkeletonBreakpoint, T>>;
+	T | Partial<Record<HubSkeletonBreakpoint, T>>;
 
 /**
  * Serializable params accepted by presets and inline templates.
