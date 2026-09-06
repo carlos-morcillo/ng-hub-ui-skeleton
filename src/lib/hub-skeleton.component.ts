@@ -32,7 +32,6 @@ import {
 	selector: 'hub-skeleton',
 	standalone: true,
 	imports: [NgTemplateOutlet],
-	providers: [HubSkeletonPresetRegistryService],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div
@@ -41,7 +40,9 @@ import {
 			[class.hub-skeleton--subtle]="appearance() === 'subtle'"
 			[class.hub-skeleton--contrast]="appearance() === 'contrast'"
 			[attr.aria-label]="ariaLabel()"
-			role="presentation"
+			role="status"
+			aria-live="polite"
+			aria-busy="true"
 		>
 			<ng-container *ngTemplateOutlet="renderNodes; context: { $implicit: resolvedNodes() }"></ng-container>
 		</div>
@@ -182,7 +183,10 @@ export class HubSkeletonComponent implements OnInit, OnDestroy {
 	/** Visual appearance preset. */
 	readonly appearance = input<HubSkeletonAppearance>('default');
 
-	/** Optional accessible label applied to the container. */
+	/**
+	 * Accessible name of the container. The placeholder shapes are all `aria-hidden`,
+	 * so this label is the only thing assistive technology can perceive while loading.
+	 */
 	readonly ariaLabel = input('Loading placeholder');
 
 	private readonly document = inject(DOCUMENT);

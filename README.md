@@ -88,7 +88,7 @@ npm install ng-hub-ui-skeleton
 
 ## 🚀 Usage
 
-Import the standalone component (or the optional `HubSkeletonModule` for module-based apps):
+Import the standalone component:
 
 ```typescript
 import { HubSkeletonComponent } from 'ng-hub-ui-skeleton';
@@ -277,7 +277,7 @@ Selector: `hub-skeleton`
 | `variant`    | `string \| null`                  | `null`                   | Named preset variant to apply.                                              |
 | `animated`   | `boolean`                         | `true`                   | Toggles the shimmer animation.                                              |
 | `appearance` | `HubSkeletonAppearance`           | `'default'`              | Visual tone: `'default' \| 'subtle' \| 'contrast'`.                         |
-| `ariaLabel`  | `string`                          | `'Loading placeholder'`  | Accessible label applied to the container.                                  |
+| `ariaLabel`  | `string`                          | `'Loading placeholder'`  | Accessible name of the container's `role="status"` live region.             |
 
 > Either `preset` or `template` must be provided; otherwise the component throws. An unknown preset name also throws.
 
@@ -331,7 +331,9 @@ interface HubSkeletonPreset {
 }
 ```
 
-Additional DSL helpers are also exported (`parseHubSkeletonDsl`, `interpolateHubSkeletonParams`, `resolveTemplateDsl`, `resolveResponsiveToken`, `resolveBreakpointFromWidth`, `resolveHubSkeletonNodes`) along with the `HUB_SKELETON_DEFAULT_PRESETS` catalogue and the `HubSkeletonModule`.
+Additional DSL helpers are also exported (`parseHubSkeletonDsl`, `interpolateHubSkeletonParams`, `resolveTemplateDsl`, `resolveResponsiveToken`, `resolveBreakpointFromWidth`, `resolveHubSkeletonNodes`) along with the `HUB_SKELETON_DEFAULT_PRESETS` catalogue and `HubSkeletonModule`.
+
+`HubSkeletonModule` is **deprecated and removed in 23.0.0**: it only re-exports `HubSkeletonComponent`, so a module-based application imports the component directly. Custom presets go through `provideHubSkeletonPresets()`, which never travelled through the module. See `BREAKING_CHANGES.md`.
 
 ## 🎨 Styling / CSS Variables
 
@@ -361,7 +363,7 @@ The `appearance` input swaps the base/highlight colors for `subtle` and `contras
 For Sass-based projects, the `hub-skeleton-theme()` mixin overrides the `--hub-skeleton-*` tokens in a single include. Every parameter is optional and defaults to `null`, so only the ones you pass are emitted — the rest keep the component defaults. It is token-based and self-contained (no Bootstrap dependency). A skeleton is a neutral placeholder, so there is no semantic color variant: tune the base / highlight surfaces, the corner radius, the gap between nodes and the shimmer speed instead (per-node sizes still come from the template DSL / presets).
 
 ```scss
-@use 'ng-hub-ui-skeleton/styles/mixins/skeleton-theme' as *;
+@use 'ng-hub-ui-skeleton/styles' as *;
 
 hub-skeleton.on-dark {
 	@include hub-skeleton-theme(

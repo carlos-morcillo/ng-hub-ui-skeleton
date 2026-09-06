@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { HubSkeletonComponent } from './hub-skeleton.component';
 
 /**
- * NgModule wrapper kept for compatibility with module-based Angular apps.
+ * Backward-compatibility module for NgModule-based applications.
+ *
+ * @deprecated Import the standalone `HubSkeletonComponent` directly; this module only
+ * re-exports it and provides nothing of its own. Custom presets are registered with
+ * `provideHubSkeletonPresets()`, which never travelled through here. Scheduled for
+ * removal in **23.0.0**.
  */
 @NgModule({
 	imports: [HubSkeletonComponent],

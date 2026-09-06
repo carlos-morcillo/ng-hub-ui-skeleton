@@ -1,5 +1,58 @@
 # Changelog
 
+## [22.3.0] - 2026-09-06
+
+### Added
+
+- **`FUNCTIONALITIES.md`**, the coverage table the rest of the family ships: which parts of the
+  component, the DSL, the preset catalogue, the registry and the styling surface a live example
+  actually demonstrates, and which are only prose. Nothing stated it before, so a reader had to
+  open the documentation site and infer it.
+
+### Changed
+
+- **One preset registry is shared again, instead of one per placeholder.** The component listed
+  `HubSkeletonPresetRegistryService` in its own `providers`, so every `<hub-skeleton>` on screen
+  built a private instance and merged the sixteen bundled presets into a fresh `Map` — a screen
+  with twenty placeholders did that twenty times — while the README described the service as the
+  `providedIn: 'root'` singleton a consumer who injects it actually gets. The component now
+  resolves the root instance. **This changes where custom presets are read from**: see
+  `BREAKING_CHANGES.md`.
+
+- **Both READMEs teach the canonical `ng-hub-ui-skeleton/styles` entry for the theming mixin.**
+  They still reached for `ng-hub-ui-skeleton/styles/mixins/skeleton-theme`, the deep path — it
+  resolves, but it is not the entry 22.2.0 introduced and not what `BREAKING_CHANGES.md`, the
+  mixin's own header and the generated mixin reference all show, so a reader comparing two sources
+  had to guess which one was current.
+
+### Deprecated
+
+- **`HubSkeletonModule`, marked for removal in 23.0.0.** The class described itself as "kept for
+  compatibility with module-based Angular apps" but carried no `@deprecated` tag, so neither an
+  editor nor the build warned anyone it was on its way out. It now says so. The module imports and
+  exports `HubSkeletonComponent` and provides nothing of its own, so importing the component
+  directly is the whole migration; custom presets go through `provideHubSkeletonPresets()`, which
+  never travelled through the module either. See `BREAKING_CHANGES.md`.
+
+### Fixed
+
+- **The `ariaLabel` input is finally reachable by assistive technology.** The container carried
+  `role="presentation"` and `aria-label` at once — a conflict that costs the name whichever way a user
+  agent resolves it — while every placeholder shape inside is `aria-hidden`, so nothing was left to carry
+  the name either. A consumer setting the input, or relying on its non-empty default, got silence and had
+  to announce the loading state from an outer element of their own. The container is now a polite
+  `role="status"` region with `aria-busy="true"`, matching `ng-hub-ui-loading`, and keeps the label as its
+  accessible name.
+
+- **The `styles` subpath the docs prescribe is now declared in the manifest `exports`.** Since 22.2.0 the
+  stylesheets have shipped at `styles/`, and both the README and `BREAKING_CHANGES.md` tell consumers to
+  reach them with `@use 'ng-hub-ui-skeleton/styles'`. The generated exports map declared only `.` and
+  `./package.json`, so anything that enforces the map — Node subpath resolution, Sass's `pkg:` importer,
+  bundlers that honour `exports` — refused the very import the documentation teaches. An Angular CLI build
+  happened to survive because it resolves bare Sass specifiers through `loadPaths` instead, which is why
+  the block went unnoticed. The theming entry and the `skeleton-theme` mixin are now declared explicitly,
+  as the sibling libraries already do.
+
 ## [22.2.4] - 2026-09-01
 
 ### Changed

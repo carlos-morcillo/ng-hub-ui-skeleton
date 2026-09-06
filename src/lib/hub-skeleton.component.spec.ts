@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { HubSkeletonComponent } from './hub-skeleton.component';
-import { HUB_SKELETON_PRESETS } from './services/hub-skeleton-preset-registry.service';
+import { HUB_SKELETON_PRESETS, HubSkeletonPresetRegistryService } from './services/hub-skeleton-preset-registry.service';
 import { parseHubSkeletonDsl, resolveResponsiveToken } from './utils/hub-skeleton-dsl';
 
 /**
@@ -13,6 +14,34 @@ import { parseHubSkeletonDsl, resolveResponsiveToken } from './utils/hub-skeleto
 	template: `<hub-skeleton preset="profile-card"></hub-skeleton>`
 })
 class HostSkeletonComponent {}
+
+/**
+ * Host with two sibling placeholders, used to observe which registry each one resolves.
+ */
+@Component({
+	standalone: true,
+	imports: [HubSkeletonComponent],
+	template: `<hub-skeleton preset="card"></hub-skeleton><hub-skeleton preset="list-item"></hub-skeleton>`
+})
+class SiblingSkeletonsHostComponent {}
+
+/**
+ * Host that scopes its own catalogue by providing the registry next to the presets token.
+ */
+@Component({
+	standalone: true,
+	imports: [HubSkeletonComponent],
+	providers: [
+		HubSkeletonPresetRegistryService,
+		{
+			provide: HUB_SKELETON_PRESETS,
+			multi: true,
+			useValue: [{ name: 'scoped-card', template: 'block(height:64)' }]
+		}
+	],
+	template: `<hub-skeleton preset="scoped-card"></hub-skeleton>`
+})
+class ScopedRegistryHostComponent {}
 
 describe('HubSkeletonComponent', () => {
 	it('parses sibling and child nodes from the DSL', () => {
@@ -65,5 +94,75 @@ describe('HubSkeletonComponent', () => {
 
 		expect(fixture.nativeElement.querySelectorAll('.hub-skeleton__node--circle').length).toBe(1);
 		expect(fixture.nativeElement.querySelectorAll('.hub-skeleton__node--block').length).toBeGreaterThan(1);
+	});
+
+	describe('preset registry ownership', () => {
+		it('resolves the same registry for sibling placeholders', async () => {
+			await TestBed.configureTestingModule({ imports: [SiblingSkeletonsHostComponent] }).compileComponents();
+
+			const fixture: ComponentFixture<SiblingSkeletonsHostComponent> =
+				TestBed.createComponent(SiblingSkeletonsHostComponent);
+			fixture.detectChanges();
+
+			const placeholders = fixture.debugElement.queryAll(By.directive(HubSkeletonComponent));
+			expect(placeholders).toHaveLength(2);
+
+			const [first, second] = placeholders.map((placeholder) =>
+				placeholder.injector.get(HubSkeletonPresetRegistryService)
+			);
+
+			expect(first).toBe(second);
+			expect(first).toBe(TestBed.inject(HubSkeletonPresetRegistryService));
+		});
+
+		it('lets an ancestor scope its own catalogue by providing the registry', async () => {
+			await TestBed.configureTestingModule({ imports: [ScopedRegistryHostComponent] }).compileComponents();
+
+			const fixture: ComponentFixture<ScopedRegistryHostComponent> = TestBed.createComponent(ScopedRegistryHostComponent);
+			fixture.detectChanges();
+
+			expect(fixture.nativeElement.querySelectorAll('.hub-skeleton__node--block').length).toBe(1);
+			expect(TestBed.inject(HubSkeletonPresetRegistryService).getPreset('scoped-card')).toBeUndefined();
+		});
+	});
+
+	describe('accessibility', () => {
+		let fixture: ComponentFixture<HubSkeletonComponent>;
+
+		const container = (): HTMLElement => fixture.nativeElement.querySelector('.hub-skeleton');
+
+		beforeEach(async () => {
+			await TestBed.configureTestingModule({
+				imports: [HubSkeletonComponent]
+			}).compileComponents();
+
+			fixture = TestBed.createComponent(HubSkeletonComponent);
+			fixture.componentRef.setInput('preset', 'card');
+			fixture.detectChanges();
+		});
+
+		it('exposes the container as a polite busy status region', () => {
+			expect(container().getAttribute('role')).toBe('status');
+			expect(container().getAttribute('aria-live')).toBe('polite');
+			expect(container().getAttribute('aria-busy')).toBe('true');
+		});
+
+		it('names the status region with the default label', () => {
+			expect(container().getAttribute('aria-label')).toBe('Loading placeholder');
+		});
+
+		it('names the status region with the supplied label', () => {
+			fixture.componentRef.setInput('ariaLabel', 'Cargando pedidos');
+			fixture.detectChanges();
+
+			expect(container().getAttribute('aria-label')).toBe('Cargando pedidos');
+		});
+
+		it('keeps the placeholder shapes out of the accessibility tree', () => {
+			const nodes = Array.from(fixture.nativeElement.querySelectorAll('.hub-skeleton__node')) as HTMLElement[];
+
+			expect(nodes.length).toBeGreaterThan(0);
+			expect(nodes.every((node) => node.getAttribute('aria-hidden') === 'true')).toBe(true);
+		});
 	});
 });
