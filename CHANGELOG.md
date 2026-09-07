@@ -1,5 +1,19 @@
 # Changelog
 
+## [22.3.1] - 2026-09-07
+
+### Fixed
+
+- **Both READMEs stop presenting six internal DSL helpers as part of the API.** They listed
+  `parseHubSkeletonDsl`, `interpolateHubSkeletonParams`, `resolveTemplateDsl`,
+  `resolveResponsiveToken`, `resolveBreakpointFromWidth` and `resolveHubSkeletonNodes` as
+  exported, and `public-api.ts` has never re-exported the module that declares them — so a
+  reader who followed the documentation and imported one got a build error from a package that
+  had promised the symbol in writing. They stay internal: a layout is written as a template
+  string and handed to the component or registered as a preset, so nothing outside the package
+  has to call them, and keeping them private is what lets the grammar grow without breaking
+  anybody. The sentence now names only what the package actually exports.
+
 ## [22.3.0] - 2026-09-06
 
 ### Added

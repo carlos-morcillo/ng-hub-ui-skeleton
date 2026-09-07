@@ -331,7 +331,7 @@ interface HubSkeletonPreset {
 }
 ```
 
-También se exportan utilidades del DSL (`parseHubSkeletonDsl`, `interpolateHubSkeletonParams`, `resolveTemplateDsl`, `resolveResponsiveToken`, `resolveBreakpointFromWidth`, `resolveHubSkeletonNodes`), junto con el catálogo `HUB_SKELETON_DEFAULT_PRESETS` y `HubSkeletonModule`.
+El paquete exporta además el catálogo `HUB_SKELETON_DEFAULT_PRESETS` y `HubSkeletonModule`. El analizador del DSL y sus resolutores se quedan dentro del paquete: un diseño se escribe como cadena de plantilla y se le entrega al componente o se registra como preset, así que nadie de fuera necesita llamarlos, y mantenerlos privados es lo que permite que la gramática crezca sin romperle nada a nadie.
 
 `HubSkeletonModule` está **obsoleto y se retira en la 23.0.0**: solo reexporta `HubSkeletonComponent`, así que una aplicación basada en módulos importa el componente directamente. Los presets personalizados van por `provideHubSkeletonPresets()`, que nunca pasó por el módulo. Consulta `BREAKING_CHANGES.md`.
 

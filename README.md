@@ -331,7 +331,7 @@ interface HubSkeletonPreset {
 }
 ```
 
-Additional DSL helpers are also exported (`parseHubSkeletonDsl`, `interpolateHubSkeletonParams`, `resolveTemplateDsl`, `resolveResponsiveToken`, `resolveBreakpointFromWidth`, `resolveHubSkeletonNodes`) along with the `HUB_SKELETON_DEFAULT_PRESETS` catalogue and `HubSkeletonModule`.
+The package also exports the `HUB_SKELETON_DEFAULT_PRESETS` catalogue and `HubSkeletonModule`. The DSL parser and its resolvers stay inside the package: a layout is written as a template string and handed to the component or registered as a preset, so nothing outside has to call them, and keeping them private is what lets the grammar grow without breaking anybody.
 
 `HubSkeletonModule` is **deprecated and removed in 23.0.0**: it only re-exports `HubSkeletonComponent`, so a module-based application imports the component directly. Custom presets go through `provideHubSkeletonPresets()`, which never travelled through the module. See `BREAKING_CHANGES.md`.
 
