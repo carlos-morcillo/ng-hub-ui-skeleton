@@ -114,12 +114,15 @@
 - Aligned with Angular 22.
 - README documentation standardized.
 
+## [0.1.1] - 2026-06-14
 
-## 0.1.1 - 2026-06-14
+### Changed
 
 - Replaced the deprecated `ngStyle` directive with the native `[style]` binding (Angular soft-deprecated `ngStyle`/`ngClass` in November 2024 in favour of native bindings, for better performance and smaller bundles).
 
-## 0.1.0 - 2026-04-14
+## [0.1.0] - 2026-04-14
+
+### Added
 
 - Added the initial dynamic skeleton component for Angular.
 - Added a compact Emmet-like DSL with preset composition and repeat support.
